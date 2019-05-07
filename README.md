@@ -1,5 +1,4 @@
-# alp
-Assembly Programming Language
+# Assembly Programming Language
 
 Just some random WPU stuff for 
 ALP
