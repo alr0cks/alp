@@ -1,0 +1,38 @@
+section .data           	 ; initialised data declaration
+msg db 'enter the number ',10 
+msgLen equ $-msg 
+section .bss            	 ;uninitialized data declaration
+num resb 3
+section .text
+
+global _start
+_start:
+
+mov rax,1               	 ;for printing the message
+mov rdi,1
+mov rsi,msg
+mov rdx,msgLen
+syscall
+
+mov rax, 0             		 ;for raeding number
+mov rdi, 0
+mov rsi, num
+mov rdx, 3
+syscall
+
+mov al,0               		 ;moving 0 to al
+mov rsi,num
+up: mov bl, byte[rsi]   
+cmp bl,0aH               	;compare bl with 0aH
+je exit1 
+cmp bl,39H               	;compare bl with 39H        
+jbe down             
+sub bl,07
+down:
+sub bl,30H
+shl al,4
+add al,bl
+inc rsi
+jmp up
+exit1:
+

@@ -1,0 +1,34 @@
+%macro rw 4          ;creating macro
+mov rax,%1
+mov rdi,%2
+mov rsi,%3
+mov rdx,%4
+syscall
+%endmacro
+
+section .data        ; initialised data declaration
+msg db 'enter your name',10 
+msgLen equ $-msg
+msg1 db 'your name is',10
+msg1Len equ $-msg1
+newline db 10 
+
+section .bss          ;uninitialized data declaration
+name resb 20
+
+
+section .text
+global _start
+_start:
+rw 1,1,msg,msgLen   ;calling macro for write
+rw 0,0,name,20      ;calling macro for read
+sub rax,1
+mov rbx,rax
+rw 1,1,msg1,msg1Len ;calling macro for write
+rw 1,1,name,rbx     ;calling macro for write
+rw 1,1,newline,1    ;calling macro for newline
+rw 60,0,0,0         ; Exit call
+
+
+
+

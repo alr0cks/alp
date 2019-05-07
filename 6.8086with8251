@@ -1,0 +1,38 @@
+a 2000
+
+mov al,4e
+out 31,al
+mov al,23
+out 31,al
+mov al,4e
+out 39,al
+mov al,26
+out 39,al
+mov si,2000
+mov di,3000
+mov cx,05
+
+again: mov al,[si]
+out 30,al
+
+up: in al,39
+    and al,02
+cmp al,02
+jne up
+in al,38
+mov[di],al
+inc si
+inc di
+dec cx
+jnz again
+int3
+
+
+>e 3000
+input the no
+esc on keyboard
+
+>d 4000
+
+>g 2000
+
