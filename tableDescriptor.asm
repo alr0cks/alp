@@ -1,7 +1,3 @@
-;Name: Shubhra Patre
-;Roll No.: 203504
-;Batch: D1
-
 
 section .data
 		msg1 db "Base Address: "
